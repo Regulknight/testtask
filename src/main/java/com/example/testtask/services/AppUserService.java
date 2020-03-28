@@ -17,4 +17,6 @@ public interface AppUserService {
     void delete(AppUser appUser);
 
     List<AppUser> findAll();
+
+    Optional<AppUser> findById(Long id);
 }

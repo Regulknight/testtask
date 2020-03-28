@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * TODO: comment
- *
  * @author lobachev.nikolay 22.03.2020   22:20
  */
 
@@ -36,5 +34,10 @@ public class AppUserServiceImpl implements AppUserService{
     @Override
     public List<AppUser> findAll() {
         return (List<AppUser>) appUserRepository.findAll();
+    }
+
+    @Override
+    public Optional<AppUser> findById(Long id) {
+        return appUserRepository.findById(id);
     }
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse
+    }
+    td {
+        border: 1px solid #000
+    }
+</style>
+<body>
+<table>
+    <th:block th:each="user : ${appUserList}">
+        <tr>
+            <td>Id</td>
+            <td>First name</td>
+            <td>Last name</td>
+            <td>Request count</td>
+        </tr>
+        <tr>
+            <td th:text="${user.id}">...</td>
+            <td th:text="${user.firstName}">...</td>
+            <td th:text="${user.lastName}">...</td>
+            <td><a th:href="'users/requests?user_id=' + ${user.id}" th:text="${user.userRequests.size()}">...</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

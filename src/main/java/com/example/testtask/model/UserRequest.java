@@ -1,5 +1,7 @@
 package com.example.testtask.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 import java.util.Date;
@@ -26,6 +28,7 @@ public class UserRequest {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "app_user_id", nullable = false)
+    @JsonBackReference
     private AppUser app_user;
 
 

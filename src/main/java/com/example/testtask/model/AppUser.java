@@ -1,5 +1,7 @@
 package com.example.testtask.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,9 +22,11 @@ public class AppUser {
     private Long id;
 
     private String firstName;
-    private String secondName;
+    private String lastName;
+
 
     @OneToMany(mappedBy = "app_user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<UserRequest> userRequests;
 
     public Long getId() {
@@ -43,12 +47,12 @@ public class AppUser {
     }
 
     @Column(nullable = false)
-    public String getSecondName() {
-        return secondName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setSecondName(String lastName) {
+        this.lastName = lastName;
     }
 
     public List<UserRequest> getUserRequests() {
