@@ -2,6 +2,7 @@ package com.example.testtask.services;
 
 import com.example.testtask.model.UserRequest;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -11,4 +12,6 @@ import java.util.Optional;
 public interface UserRequestService {
 
     Optional<UserRequest> save(UserRequest userRequest);
+
+    List<UserRequest> findAll();
 }

@@ -14,13 +14,13 @@
 </style>
 <body>
 <table>
+    <tr>
+        <td th:width="100px">Id</td>
+        <td th:width="300px">First name</td>
+        <td th:width="300px">Last name</td>
+        <td th:width="100px">Request count</td>
+    </tr>
     <th:block th:each="user : ${appUserList}">
-        <tr>
-            <td>Id</td>
-            <td>First name</td>
-            <td>Last name</td>
-            <td>Request count</td>
-        </tr>
         <tr>
             <td th:text="${user.id}">...</td>
             <td th:text="${user.firstName}">...</td>

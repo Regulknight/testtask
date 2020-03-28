@@ -1,10 +1,12 @@
 package com.example.testtask.services;
 
+import com.example.testtask.model.AppUser;
 import com.example.testtask.model.UserRequest;
 import com.example.testtask.repositories.UserRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -23,5 +25,10 @@ public class UserRequestServiceImpl implements UserRequestService{
     @Override
     public Optional<UserRequest> save(UserRequest userRequest) {
         return Optional.of(userRequestRepository.save(userRequest));
+    }
+
+    @Override
+    public List<UserRequest> findAll() {
+        return (List<UserRequest>) userRequestRepository.findAll();
     }
 }

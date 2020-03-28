@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User requests</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse
+    }
+    td {
+        border: 1px solid #000
+    }
+</style>
+<body>
+<table>
+    <tr>
+        <td th:width="100px">Id</td>
+        <td th:width="200px">Title</td>
+        <td th:width="400px">Description</td>
+        <td th:width="200px">Date</td>
+    </tr>
+    <th:block th:each="request : ${userRequestList}">
+        <tr>
+            <td th:text="${request.id}">...</td>
+            <td th:text="${request.title}">...</td>
+            <td th:text="${request.description}">...</td>
+            <td th:text="${request.request_date.toGMTString()}">...</td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

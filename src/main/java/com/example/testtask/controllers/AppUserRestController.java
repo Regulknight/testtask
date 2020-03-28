@@ -44,7 +44,7 @@ public class AppUserRestController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public AppUser getUser(@RequestParam(name = "user_id") Long user_id){
-        return appUserService.findById(user_id).orElseThrow(() -> new RuntimeException());
+    public ResponseEntity<AppUser> getUser(@RequestParam(name = "user_id") Long user_id){
+        return appUserService.findById(user_id).map(u -> new ResponseEntity<>(u, HttpStatus.OK)).orElseThrow(RuntimeException::new);
     }
 }

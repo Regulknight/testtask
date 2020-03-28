@@ -24,6 +24,13 @@ public class AppUser {
     private String firstName;
     private String lastName;
 
+    public AppUser() {
+    }
+
+    public AppUser(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     @OneToMany(mappedBy = "app_user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
