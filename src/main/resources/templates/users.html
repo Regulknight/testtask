@@ -19,6 +19,7 @@
         <td th:width="300px">First name</td>
         <td th:width="300px">Last name</td>
         <td th:width="100px">Request count</td>
+        <td th:width="100px">Delete</td>
     </tr>
     <th:block th:each="user : ${appUserList}">
         <tr>
@@ -26,6 +27,7 @@
             <td th:text="${user.firstName}">...</td>
             <td th:text="${user.lastName}">...</td>
             <td><a th:href="'users/requests?user_id=' + ${user.id}" th:text="${user.userRequests.size()}">...</a></td>
+            <td><a th:href="'delete_user?user_id=' + ${user.id}">Delete</a></td>
         </tr>
     </th:block>
 </table>

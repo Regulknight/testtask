@@ -1,13 +1,11 @@
 package com.example.testtask.repositories;
 
-import com.example.testtask.model.AppUser;
+import com.example.testtask.model.User;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * TODO: comment
- *
  * @author lobachev.nikolay 22.03.2020   19:22
  */
-public interface AppUserRepository extends CrudRepository<AppUser, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
 }

@@ -4,35 +4,41 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 /**
- * TODO: comment
- *
  * @author lobachev.nikolay 22.03.2020   16:43
  */
 
 @Entity
 @Table(name = "app_user")
-public class AppUser {
+public class User {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    private String username;
+    private String password;
+
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    private Set<Role> role;
+
     private String firstName;
     private String lastName;
 
-    public AppUser() {
+    public User() {
     }
 
-    public AppUser(String firstName, String lastName) {
+    public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    @OneToMany(mappedBy = "app_user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<UserRequest> userRequests;
 
@@ -58,7 +64,7 @@ public class AppUser {
         return lastName;
     }
 
-    public void setSecondName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -68,5 +74,33 @@ public class AppUser {
 
     public void setUserRequests(List<UserRequest> userRequests) {
         this.userRequests = userRequests;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRole() {
+        return role;
+    }
+
+    public void setRole(Set<Role> role) {
+        this.role = role;
     }
 }

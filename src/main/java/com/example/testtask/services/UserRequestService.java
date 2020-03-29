@@ -14,4 +14,6 @@ public interface UserRequestService {
     Optional<UserRequest> save(UserRequest userRequest);
 
     List<UserRequest> findAll();
+
+    Optional<UserRequest> findById(Long id);
 }

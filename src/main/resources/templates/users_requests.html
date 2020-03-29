@@ -22,6 +22,7 @@
         <td th:width="200px">User Id</td>
         <td th:width="200px">User first name</td>
         <td th:width="200px">User last name</td>
+        <td th:width="100px">Delete</td>
     </tr>
     <th:block th:each="userRequest : ${userRequestList}">
         <tr>
@@ -29,9 +30,10 @@
             <td th:text="${userRequest.title}">...</td>
             <td th:text="${userRequest.description}">...</td>
             <td th:text="${userRequest.request_date.toGMTString()}">...</td>
-            <td th:text="${userRequest.app_user.id}">...</td>
-            <td th:text="${userRequest.app_user.firstName}">...</td>
-            <td th:text="${userRequest.app_user.lastName}">...</td>
+            <td th:text="${userRequest.user.id}">...</td>
+            <td th:text="${userRequest.user.firstName}">...</td>
+            <td th:text="${userRequest.user.lastName}">...</td>
+            <td><a th:href="'delete_user_request?user_request_id=' + ${userRequest.id}">Delete</a></td>
         </tr>
     </th:block>
 </table>

@@ -12,6 +12,10 @@ create table user_request(
 	app_user_id integer references app_user(id)
 );
 
+create table user_role(
+
+)
+
 insert into app_user(first_name, last_name) values ('Lev', 'Tolstoi');
 insert into app_user(first_name, last_name) values ('Maksim', 'Gorky');
 insert into app_user(first_name, last_name) values ('Fedor', 'Dostoevskii');

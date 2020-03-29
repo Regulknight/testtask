@@ -29,7 +29,7 @@ public class UserRequest {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "app_user_id", nullable = false)
     @JsonBackReference
-    private AppUser app_user;
+    private User user;
 
 
     public long getId() {
@@ -67,11 +67,11 @@ public class UserRequest {
         this.request_date = request_date;
     }
 
-    public AppUser getApp_user() {
-        return app_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setApp_user(AppUser app_user) {
-        this.app_user = app_user;
+    public void setUser(User app_user) {
+        this.user = app_user;
     }
 }
