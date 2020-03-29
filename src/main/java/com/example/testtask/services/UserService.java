@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * TODO: comment
- *
  * @author lobachev.nikolay 22.03.2020   22:19
  */
+
 public interface UserService {
 
     Optional<User> save(User user);

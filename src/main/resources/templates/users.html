@@ -21,7 +21,7 @@
         <td th:width="100px">Request count</td>
         <td th:width="100px">Delete</td>
     </tr>
-    <th:block th:each="user : ${appUserList}">
+    <th:block th:each="user : ${userList}">
         <tr>
             <td th:text="${user.id}">...</td>
             <td th:text="${user.firstName}">...</td>
