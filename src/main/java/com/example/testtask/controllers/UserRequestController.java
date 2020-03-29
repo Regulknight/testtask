@@ -1,6 +1,6 @@
 package com.example.testtask.controllers;
 
-import com.example.testtask.services.UserRequestService;
+import com.example.testtask.repositories.UserRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class UserRequestController {
-    private final UserRequestService userRequestService;
+    private final UserRequestRepository userRequestRepository;
 
     @Autowired
-    public UserRequestController(UserRequestService userRequestService) {
-        this.userRequestService = userRequestService;
+    public UserRequestController(UserRequestRepository userRequestRepository) {
+        this.userRequestRepository = userRequestRepository;
     }
 
     @GetMapping("/requests")
     public String getUserRequests(Model model){
-        model.addAttribute(userRequestService.findAll());
+        model.addAttribute(userRequestRepository.findAll());
         return "users_requests";
     }
 }

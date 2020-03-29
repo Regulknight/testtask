@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -20,7 +19,7 @@ import java.util.Collections;
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public RegistrationController(UserRepository userRepository) {
