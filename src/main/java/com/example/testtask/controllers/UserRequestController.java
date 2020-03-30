@@ -20,7 +20,7 @@ public class UserRequestController {
 
     @GetMapping("/requests")
     public String getUserRequests(Model model){
-        model.addAttribute(userRequestRepository.findAll());
+        model.addAttribute("usersRequests", userRequestRepository.findAll());
         return "users_requests";
     }
 }

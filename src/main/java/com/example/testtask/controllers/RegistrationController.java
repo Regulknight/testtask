@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author lobachev.nikolay 30.03.2020   00:38
@@ -41,7 +43,8 @@ public class RegistrationController {
         }
 
         user.setActive(true);
-        user.setRoles(Collections.singleton(Role.USER));
+        Role defaultRole =  new Role(Role.DEFAULT_ROLE_ID, Role.DEFAULT_ROLE_NAME);
+        user.setRoles(Collections.singleton(defaultRole));
         userRepository.save(user);
 
         return "redirect:/login";
