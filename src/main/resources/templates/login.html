@@ -3,13 +3,25 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/mystyles.css}"/>
 </head>
 <body>
-    <a href="./registration">Registration</a>
-    <form th:action="@{/login}" method="post">
-        <div><label> User Name : <input type="text" name="username"/> </label></div>
-        <div><label> Password: <input type="password" name="password"/> </label></div>
-        <div><input type="submit" value="Sign In"/></div>
+<nav>
+    <ul>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li sec:authorize="!isAuthenticated()" style="float: right">
+            <a href="./registration">Registration</a>
+        </li>
+    </ul>
+</nav>
+<div class="login-container">
+    <form class="login-form" th:action="@{/login}" method="post">
+        <div class="login-row"><label> User Name: <input class="login-input" type="text" name="username"/> </label></div>
+        <div class="login-row"><label> Password: <input class="login-input" type="password" name="password"/> </label></div>
+        <div class="login-row"><input class="sign-in-button" type="submit" value="Sign In"/></div>
     </form>
+</div>
 </body>
 </html>

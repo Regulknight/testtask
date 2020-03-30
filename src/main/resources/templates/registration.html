@@ -3,15 +3,25 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>Registration</title>
+    <link rel="stylesheet" th:href="@{/css/mystyles.css}"/>
 </head>
 <body>
-    <p th:if="${resultMessage != null}" th:text="${resultMessage}">...</p>
-    <form th:action="@{/registration}" method="post">
-        <div><label> First Name : <input type="text" name="firstName" required /> </label></div>
-        <div><label> Last Name : <input type="text" name="lastName" required /> </label></div>
-        <div><label> User Name : <input type="text" name="username" required /> </label></div>
-        <div><label> Password: <input type="password" name="password" required /> </label></div>
-        <div><input type="submit" value="Create user"/></div>
-    </form>
+<nav>
+    <ul>
+        <li>
+            <a href="/">Home</a>
+        </li>
+    </ul>
+</nav>
+<p th:if="${resultMessage != null}" th:text="${resultMessage}">...</p>
+<div class="login-container">
+<form class="login-form" th:action="@{/registration}" method="post">
+    <div class="login-row"><label> First Name : <input class="login-input" type="text" name="firstName" required/> </label></div>
+    <div class="login-row"><label> Last Name : <input class="login-input" type="text" name="lastName" required/> </label></div>
+    <div class="login-row"><label> User Name : <input class="login-input" type="text" name="username" required/> </label></div>
+    <div class="login-row"><label> Password: <input class="login-input" type="password" name="password" required/> </label></div>
+    <div class="login-row"><input class="sign-in-button" type="submit" value="Create user"/></div>
+</form>
+</div>
 </body>
 </html>

@@ -4,17 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
+    <link rel="stylesheet" th:href="@{/css/mystyles.css}"/>
 </head>
-<style>
-    table {
-        border-collapse: collapse
-    }
-    td {
-        border: 1px solid #000
-    }
-</style>
 <body>
-<table>
+<nav>
+    <ul>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/requests">Requests</a>
+        </li>
+        <li sec:authorize="isAuthenticated()" style="float: right">
+            <form class="sign-out" th:action="@{/logout}" method="post">
+                <input class="sign-out-button" type="submit" value="Sign Out"/>
+            </form>
+        </li>
+    </ul>
+</nav>
+<table class="table">
     <tr>
         <td th:width="100px">Id</td>
         <td th:width="300px">First name</td>
@@ -29,8 +37,13 @@
             <td th:text="${user.firstName}">...</td>
             <td th:text="${user.lastName}">...</td>
             <td><a th:href="'users/requests?user_id=' + ${user.id}" th:text="${user.userRequests.size()}">...</a></td>
-            <td sec:authorize="hasAuthority('ROLE_ADMIN')"><a th:href="'edit_user?user_id=' + ${user.id}">Edit</a></td>
-            <td sec:authorize="hasAuthority('ROLE_ADMIN')"><a th:href="'delete_user?user_id=' + ${user.id}">Delete</a></td>
+            <td sec:authorize="hasAuthority('ROLE_ADMIN')"><a th:href="'edit_user/' + ${user.id}">Edit</a></td>
+            <td sec:authorize="hasAuthority('ROLE_ADMIN')">
+                <form action="#" th:action="@{/delete_user}" method="post">
+                    <input th:value="${user.id}" hidden name="user_id">
+                    <button style="background-color: red" type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
     </th:block>
 </table>

@@ -3,20 +3,20 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
-    <title>Main page</title>
+    <title>Edit user</title>
     <link rel="stylesheet" th:href="@{/css/mystyles.css}"/>
 </head>
 <body>
 <nav>
     <ul>
         <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
             <a href="/users">Users</a>
         </li>
         <li>
             <a href="/requests">Requests</a>
-        </li>
-        <li sec:authorize="!isAuthenticated()" style="float: right">
-            <a href="./registration">Registration</a>
         </li>
         <li sec:authorize="isAuthenticated()" style="float: right">
             <form class="sign-out" th:action="@{/logout}" method="post">
@@ -25,5 +25,17 @@
         </li>
     </ul>
 </nav>
+<div>
+    <form action="#" th:action="@{/edit_user}" method="post">
+        <input th:value="${userObject.id}" hidden name="user_id">
+        <label title="First name">
+            <input th:value="${userObject.firstName}" type="text" name="first_name" placeholder="First name"/>
+        </label>
+        <label title="Last name">
+            <input th:value="${userObject.lastName}" type="text" name="last_name" placeholder="Last name"/>
+        </label>
+        <button type="submit">Submit changes</button>
+    </form>
+</div>
 </body>
 </html>

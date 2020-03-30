@@ -24,7 +24,7 @@ public class UserRequest {
 
     private String title;
     private String description;
-    private Date request_date;
+    private Date requestDate;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "app_user_id", nullable = false)
@@ -59,12 +59,12 @@ public class UserRequest {
     }
 
     @Column(nullable = false)
-    public Date getRequest_date() {
-        return request_date;
+    public Date getRequestDate() {
+        return requestDate;
     }
 
-    public void setRequest_date(Date request_date) {
-        this.request_date = request_date;
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
     }
 
     public User getUser() {

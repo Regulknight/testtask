@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user request</title>
+    <link rel="stylesheet" th:href="@{/css/mystyles.css}"/>
+</head>
+<body>
+<nav>
+    <ul>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/users">Users</a>
+        </li>
+        <li>
+            <a href="/requests">Requests</a>
+        </li>
+        <li sec:authorize="isAuthenticated()" style="float: right">
+            <form class="sign-out" th:action="@{/logout}" method="post">
+                <input class="sign-out-button" type="submit" value="Sign Out"/>
+            </form>
+        </li>
+    </ul>
+</nav>
+<div>
+    <form action="#" th:action="@{/edit_user_request}" method="post">
+        <input th:value="${userRequest.id}" hidden name="user_request_id">
+        <label title="Title">
+            <input th:value="${userRequest.title}" type="text" name="title" placeholder="Title"/>
+        </label>
+        <label title="Description">
+            <input th:value="${userRequest.description}" type="text" name="description" placeholder="Description"
+                   th:rows="5"/>
+        </label>
+        <label title="Date">
+            <input th:value="${userRequest.requestDate}" type="date" name="request_date"/>
+        </label>
+        <button type="submit">Submit changes</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,31 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <title>User requests</title>
+    <link rel="stylesheet" th:href="@{/css/mystyles.css}"/>
 </head>
-<style>
-    table {
-        border-collapse: collapse
-    }
-    td {
-        border: 1px solid #000
-    }
-</style>
 <body>
-<table>
+<nav>
+    <ul>
+        <li>
+            <a href="/users">Users</a>
+        </li>
+        <li>
+            <a href="/requests">Requests</a>
+        </li>
+        <li sec:authorize="isAuthenticated()" style="float: right">
+            <form class="sign-out" th:action="@{/logout}" method="post">
+                <input class="sign-out-button" type="submit" value="Sign Out"/>
+            </form>
+        </li>
+    </ul>
+</nav>
+<table class="table">
     <tr>
         <td th:width="100px">Id</td>
         <td th:width="200px">Title</td>
         <td th:width="400px">Description</td>
         <td th:width="200px">Date</td>
+        <td sec:authorize="hasAuthority('ROLE_ADMIN')" th:width="100px">Edit</td>
+        <td sec:authorize="hasAuthority('ROLE_ADMIN')" th:width="100px">Delete</td>
     </tr>
     <th:block th:each="request : ${userRequestList}">
         <tr>
             <td th:text="${request.id}">...</td>
             <td th:text="${request.title}">...</td>
             <td th:text="${request.description}">...</td>
-            <td th:text="${request.request_date.toGMTString()}">...</td>
+            <td th:text="${request.requestDate.toGMTString()}">...</td>
+            <td sec:authorize="hasAuthority('ROLE_ADMIN')"><a th:href="'../edit_user_request/' + ${request.id}">Edit</a>
+            </td>
+            <td sec:authorize="hasAuthority('ROLE_ADMIN')">
+                <form action="#" th:action="@{/delete_user_request}" method="post">
+                    <input th:value="${request.id}" hidden name="user_request_id">
+                    <button style="background-color: red" type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
     </th:block>
 </table>
