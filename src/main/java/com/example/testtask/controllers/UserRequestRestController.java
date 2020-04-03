@@ -1,35 +1,42 @@
 package com.example.testtask.controllers;
 
+import com.example.testtask.dao.UserRequestService;
 import com.example.testtask.model.UserRequest;
-import com.example.testtask.repositories.UserRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
+
 /**
- * @author lobachev.nikolay 29.03.2020   02:15
+ * @author lobachev.nikolay
  */
 @RestController
 @RequestMapping("/requests-rest")
 public class UserRequestRestController {
-    private final UserRequestRepository userRequestRepository;
+    private final UserRequestService userRequestService;
 
     @Autowired
-    public UserRequestRestController(UserRequestRepository userRequestRepository) {
-        this.userRequestRepository = userRequestRepository;
+    public UserRequestRestController(UserRequestService userRequestService) {
+        this.userRequestService = userRequestService;
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public UserRequest save(@RequestBody UserRequest userRequest) {
-        return userRequestRepository.save(userRequest);
+    public void save(@RequestBody UserRequest userRequest) {
+        try {
+            userRequestService.create(userRequest);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserRequest> getAppUserRequest(@RequestParam(name = "user_request_id") Long user_request_id){
-        return userRequestRepository.findById(user_request_id)
-                .map(u -> new ResponseEntity<>(u, HttpStatus.OK))
-                .orElseThrow(RuntimeException::new);
+    public UserRequest getAppUserRequest(@RequestParam(name = "user_request_id") Long user_request_id) {
+        try {
+            return userRequestService.findById(user_request_id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            throw new RuntimeException();
+        }
     }
 }

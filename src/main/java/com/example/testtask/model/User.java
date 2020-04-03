@@ -4,30 +4,21 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-
-import static javax.persistence.GenerationType.IDENTITY;
 
 /**
  * @author lobachev.nikolay 22.03.2020   16:43
  */
 
-@Entity
-@Table(name = "app_user")
 public class User implements UserDetails {
-
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     private String username;
     private String password;
     private boolean isActive;
 
-    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     private String firstName;
@@ -41,7 +32,6 @@ public class User implements UserDetails {
         this.lastName = lastName;
     }
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<UserRequest> userRequests;
 
@@ -53,7 +43,6 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    @Column(nullable = false)
     public String getFirstName() {
         return firstName;
     }
@@ -62,7 +51,6 @@ public class User implements UserDetails {
         this.firstName = firstName;
     }
 
-    @Column(nullable = false)
     public String getLastName() {
         return lastName;
     }

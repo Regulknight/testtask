@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @author lobachev.nikolay 29.03.2020   23:55
+ * @author lobachev.nikolay
  */
 
 @Controller
 @RequestMapping("/")
 public class MainController {
     @GetMapping
-    public String getMainPage(){
+    public String getMainPage() {
         return "main";
     }
 }

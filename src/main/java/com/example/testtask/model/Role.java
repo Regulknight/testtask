@@ -2,26 +2,19 @@ package com.example.testtask.model;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.*;
 import java.util.Set;
 
 /**
- * @author lobachev.nikolay 30.03.2020   00:11
+ * @author lobachev.nikolay
  */
 
-@Entity
-@Table(name = "app_role")
 public class Role implements GrantedAuthority {
     public final static Long DEFAULT_ROLE_ID = 1L;
     public final static String DEFAULT_ROLE_NAME = "ROLE_USER";
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
 
-    @Transient
-    @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
     public Role() {
